@@ -5,7 +5,7 @@ import java.util.Map;
 
 //Generics
 public class Inventario<T> {
-
+	
 	// "chave" => "valor"
 	// A chave é um item (moeda, item da máquina, etc.).
 	// O valor é a quantidade presente na máquina em dado momento.
@@ -28,6 +28,16 @@ public class Inventario<T> {
 		int contagemAtual = inventario.get(item);
 		inventario.put(item, contagemAtual+1);
 	}
+	
+	public void reduzir(T item) {
+		
+		if (temQuantidade(item)) {
+			
+			int contagemAtual = inventario.get(item);
+			inventario.put(item, contagemAtual-1);			
+		}
+	}
+	
 	
 	public boolean temQuantidade(T item) {
 		
