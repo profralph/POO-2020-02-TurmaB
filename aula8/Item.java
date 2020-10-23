@@ -4,7 +4,8 @@ public enum Item {
 
 	COCA("Coca-Cola", 25),
 	PEPSI("Pepsi", 35),
-	SODA("Soda Limonada", 45);
+	SODA("Soda Limonada", 45),
+	TONICA("Água Tônica", 50);
 	
 	private String nome;
 	private int preco;
