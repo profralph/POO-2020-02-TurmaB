@@ -11,14 +11,18 @@ import java.util.List;
 
 public class AcessoBanco {
 
+	private static final String localizacao = "C:\\TEMP\\imed.db";
+	
 	public static void main(String[] args) {
 		
 		Connection con;
 		
 		try {
 			
-			String url = "jdbc:sqlite:C:\\TEMP\\imed.db";
-			con = DriverManager.getConnection(url);
+			con = ManterConexao.criarConexaoBanco(Drivers.SQLITE, localizacao);
+			
+			/*String url = "jdbc:sqlite:C:\\TEMP\\imed.db";
+			con = DriverManager.getConnection(url);*/
 			System.out.println("Ok!");
 			
 			String sql = "SELECT id_produto, nome, preco FROM produto";
@@ -68,6 +72,8 @@ public class AcessoBanco {
 			String sqlDelete = "DELETE FROM produto WHERE id_produto = 4";
 			stmt = con.createStatement();
 			stmt.executeUpdate(sqlDelete);
+			
+			ManterConexao.fecharConexao(con);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

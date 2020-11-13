@@ -23,7 +23,7 @@ public class ManterProduto {
 		
 		} catch (SQLException e ) {
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 	public void alterarProduto(Connection con, Produto produto) {
@@ -32,7 +32,9 @@ public class ManterProduto {
 		
 		try {
 			
-			Statement stmt = con.createStatement();
+			PreparedStatement stmt = con.prepareStatement(sqlUpdate);
+			stmt.setDouble(1, produto.getPreco());
+			stmt.setInt(2, produto.getId());
 			stmt.executeUpdate(sqlUpdate);
 			
 		} catch (SQLException e ) {
@@ -46,9 +48,13 @@ public class ManterProduto {
 		String sqlDelete = "DELETE FROM produto WHERE id_produto = ?";
 		
 		try {
-			Statement stmt = con.createStatement();
+			
+			PreparedStatement stmt = con.prepareStatement(sqlDelete);
+			stmt.setInt(1, produto.getId());
 			stmt.executeUpdate(sqlDelete);
+			
 		} catch (SQLException e ) {
+			
 			e.printStackTrace();
 		}
 	}
